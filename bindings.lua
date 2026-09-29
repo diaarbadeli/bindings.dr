@@ -1,4 +1,4 @@
->>> bindings.dr managed block >>>
+
 hl.unbind("SUPER + SHIFT + ALT + E") -- was new email
 hl.unbind("SUPER + SHIFT + ALT + A") -- was grok
 hl.unbind("SUPER + SHIFT + C") -- better AI
@@ -88,4 +88,4 @@ fi'
 -- Voxtype Toggle & Cancel
 o.bind("INSERT", "Dictation Toggle", "voxtype record toggle")
 o.bind("SHIFT + INSERT", "Dictation Cancel", "voxtype record cancel")
-<<< bindings.dr managed block <<<
+
