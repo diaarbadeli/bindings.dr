@@ -1,3 +1,4 @@
+>>> bindings.dr managed block >>>
 hl.unbind("SUPER + SHIFT + ALT + E") -- was new email
 hl.unbind("SUPER + SHIFT + ALT + A") -- was grok
 hl.unbind("SUPER + SHIFT + C") -- better AI
@@ -19,9 +20,11 @@ hl.unbind("SUPER + N") -- was editor
 hl.unbind("SUPER + O") -- disable window popout (toggle tiling suffices)
 hl.unbind("SUPER + SLASH") -- disable monitor scaleup (hurts>helps)
 hl.unbind("SUPER + ALT + SLASH") -- disable monitor scaledown (hurts>helps)
+hl.unbind("SUPER + CTRL + N") -- was nightlight
 -- Must-Haves
 o.bind("SUPER + B", "Browser", "omarchy-launch-browser")
 o.bind("SUPER + E", "Editor", "omarchy-launch-editor")
+o.bind("SUPER + CTRL + N", "Moodist", "omarchy-shell -q io.github.aphelion-studios.omamoodist toggle")
 o.bind("SUPER + SHIFT + H", "File manager", "omarchy-launch-nautilus")
 o.bind("SUPER + SHIFT + CTRL + H", "File manager (cwd)", {omarchy = "nautilus-cwd"})
 o.bind("SUPER + SHIFT + M", "Cliamp", { tui = "cliamp", focus = true })
@@ -31,6 +34,7 @@ o.bind("SUPER + SHIFT + B", "Bale", 'omarchy-launch-or-focus-webapp "Bale" "http
 o.bind("SUPER + SHIFT + G", "Omamail", "omarchy shell shell toggle omamail '{}'")
 -- better AI
 o.bind("SUPER + A", "Deepseek", 'omarchy-launch-or-focus-webapp "deepseek" "https://chat.deepseek.com/"')
+o.bind("SUPER + SHIFT + Z", "z.ai", 'omarchy-launch-or-focus-webapp "z.ai" "https://chat.z.ai/"')
 o.bind("SUPER + SHIFT + X", "Grok", 'omarchy-launch-or-focus-webapp "Grok" "https://grok.com/"')
 o.bind("SUPER + SHIFT + C", "Claude", 'omarchy-launch-or-focus-webapp "Claude" "https://claude.ai/new"')
 o.bind("SUPER + SHIFT + V", "ChatGPT", 'omarchy-launch-or-focus-webapp "ChatGPT" "https://chatgpt.com"')
@@ -46,6 +50,16 @@ o.bind("SUPER + SHIFT + P", "Omaplug", function()
         else
             omarchy plugin enable omaplug
             omarchy-shell shell toggle omaplug '{}'
+        fi
+    ]])
+end)
+o.bind("XF86Display", "Screensaver", function()
+    os.execute([[
+        if omarchy-shell shell listPlugins | jq -e '.[] | select(.id == "io.github.wouldja.screensaver" and .enabled == true)' >/dev/null 2>&1; then
+            omarchy plugin disable io.github.wouldja.screensaver
+        else
+            omarchy plugin enable io.github.wouldja.screensaver
+            omarchy-shell shell toggle io.github.wouldja.screensaver '{}'
         fi
     ]])
 end)
@@ -74,3 +88,4 @@ fi'
 -- Voxtype Toggle & Cancel
 o.bind("INSERT", "Dictation Toggle", "voxtype record toggle")
 o.bind("SHIFT + INSERT", "Dictation Cancel", "voxtype record cancel")
+<<< bindings.dr managed block <<<
