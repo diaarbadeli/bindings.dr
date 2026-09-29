@@ -30,8 +30,8 @@ fi
 CURRENT="$(cat "$TARGET")"
 MANAGED="$(cat "$TEMP_CONFIG")"
 
-START_COUNT="$(grep -Fc "$START_MARKER" "$TARGET" || true)"
-END_COUNT="$(grep -Fc "$END_MARKER" "$TARGET" || true)"
+START_COUNT="$(grep -Fc -- "$START_MARKER" "$TARGET" || true)"
+END_COUNT="$(grep -Fc -- "$END_MARKER" "$TARGET" || true)"
 
 # No markers: add our managed block to the beginning.
 if [[ "$START_COUNT" -eq 0 && "$END_COUNT" -eq 0 ]]; then
